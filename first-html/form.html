@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="tabelle.html" method="post">
+        <fieldset>
+            <legend>Emfpänger</legend>
+            <!-- type, value,  -->
+            <label for="vornameFeld">Vorname:</label>
+            <input id="vornameFeld" name="vorname" type="text" value=""><br>
+            <label for="nachnameFeld">Nachname:</label>
+            <input id="nachnameFeld" name="nachname" type="text" 
+            value=""><br>
+            <!--input type="date"><input type="time"><input type="number"><input type="color"><input type="email"-->
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Bestellung</legend>
+            <input id="orangenFeld" type="checkbox">
+            <label for="orangenFeld">Orange</label><br>
+            <input id="kaeseFeld" type="checkbox">
+            <label for="kaeseFeld">Käse</label><br>
+            <input id="brotFeld" type="checkbox">
+            <label for="brotFeld">Brot</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Lieferzeitpunkt</legend>
+            <input id="12Feld" name="lieferzeit" type="radio">
+            <label for="12Feld">12:00</label>
+            <input id="15Feld" name="lieferzeit" type="radio">
+            <label for="15Feld">15:00</label>
+            <input id="18Feld" name="lieferzeit" type="radio">
+            <label for="18Feld">18:00</label>
+        </fieldset>
+
+        <fieldset>
+            <input id="agbFeld" type="checkbox">
+            <label for="agbFeld">Ich akzeptiere die AGBs</label>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Buttons</legend>
+            <input type="submit" value="Absenden">
+            <input type="reset" value="Zurücksetzen">
+        </fieldset>
+    </form>
+</body>
+</html>
