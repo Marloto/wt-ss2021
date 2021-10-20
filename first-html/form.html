@@ -7,14 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="tabelle.html" method="post">
+    <form action="form.html" method="get">
         <fieldset>
             <legend>Emfpänger</legend>
             <!-- type, value,  -->
             <label for="vornameFeld">Vorname:</label>
-            <input id="vornameFeld" name="vorname" type="text" value=""><br>
+            <input required id="vornameFeld" name="vorname" placeholder="Ihr Name" type="text" value=""><br>
             <label for="nachnameFeld">Nachname:</label>
-            <input id="nachnameFeld" name="nachname" type="text" 
+            <input required id="nachnameFeld" name="nachname" placeholder="Ihr Nachname" type="text" 
             value=""><br>
             <!--input type="date"><input type="time"><input type="number"><input type="color"><input type="email"-->
         </fieldset>
@@ -22,29 +22,48 @@
 
         <fieldset>
             <legend>Bestellung</legend>
-            <input id="orangenFeld" type="checkbox">
+            <input id="orangenFeld" name="orange" type="checkbox" checked value="1">
             <label for="orangenFeld">Orange</label><br>
-            <input id="kaeseFeld" type="checkbox">
+            <input id="kaeseFeld" name="kaese" type="checkbox" value="1">
             <label for="kaeseFeld">Käse</label><br>
-            <input id="brotFeld" type="checkbox">
+            <input id="brotFeld" name="brot" type="checkbox" value="1">
             <label for="brotFeld">Brot</label>
         </fieldset>
 
         <fieldset>
             <legend>Lieferzeitpunkt</legend>
-            <input id="12Feld" name="lieferzeit" type="radio">
+            <input id="12Feld" name="lieferzeit" type="radio" value="12">
             <label for="12Feld">12:00</label>
-            <input id="15Feld" name="lieferzeit" type="radio">
+            <input id="15Feld" name="lieferzeit" type="radio" value="15">
             <label for="15Feld">15:00</label>
-            <input id="18Feld" name="lieferzeit" type="radio">
+            <input id="18Feld" name="lieferzeit" type="radio" value="18">
             <label for="18Feld">18:00</label>
         </fieldset>
 
         <fieldset>
+            <legend>Besondere Wünsche</legend>
+            <label for="specialsFled">Spezielle wünsche?</label>
+            <textarea id="specialsFled" name="specials" rows="10" cols="80" placeholder="Bitte geben Sie Ihre wünsche ein!"></textarea>
+        </fieldset>
+        
+        <fieldset>
+            <legend>AGBs</legend>
             <input id="agbFeld" type="checkbox">
             <label for="agbFeld">Ich akzeptiere die AGBs</label>
         </fieldset>
 
+
+        <fieldset>
+            <legend>Versandart</legend>
+            <label for="versandartFeld">Wählen Sie Ihre gewünschte Versandart aus</label><br>
+            <select id="versandartFeld" name="versandart">
+                <option value="1">DHL</option>
+                <option value="2">Hermes</option>
+                <option value="3" selected>DPD</option>
+                <option value="4">TNT</option>
+                <option value="5">UPS</option>
+            </select>
+        </fieldset>
 
         <fieldset>
             <legend>Buttons</legend>

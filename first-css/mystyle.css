@@ -1,0 +1,19 @@
+h2 {
+    font-family: sans-serif;
+}
+
+p {
+    color: red;
+}
+
+#abc {
+    color: cyan;
+}
+
+.abstract {
+    font-size: 1.25em;
+}
+
+h1.beliebig#abc {
+    color: orange;
+}
