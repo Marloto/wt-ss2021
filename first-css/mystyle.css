@@ -18,6 +18,7 @@ h1.beliebig#abc {
     color: orange;
 }
 
+/* Attribut-Selektoren erlauben die Selektieren basierend auf bestimmten Attributen. Mit Attribut-Selektoren lassen sich auch ID- und Klassenselektoren nachbauen. */
 input[type="submit"] {
     background-color: purple;
 }
@@ -29,28 +30,34 @@ input[type="submit"] {
 }
 
 
-/*ol li a em {*/
+/* Kind-Kontext: Erlaubt Regeln auf Elemente die direkte oder indirekte Kinder von einem bestimmten Eltern-Element sind */
+/* Irgend ein Kind entlang der Struktur: ol li a em {*/
+/* Direktes Kind: */
 ol > li > a > em {
     color: orange;
 }
 
+/* Nachbar-Kontext: Erlaubt Regeln auf Elemente die direkt oder indirekt auf ein anderes Element folgen */
 h1 ~ h2 + p {
     color: cyan;
 }
 
-/* Klappt nicht, da kein Input auf einen Input in einem Element existiert
+/* Nachbar-Kontext bezieht sich nur auf Nachbarn innerhalb eines Elternelementes - daher klappt die folgende Regel nicht, da kein Input auf einen Input in einem Element existiert */
 form input ~ input {
     background-color: gold;
-}*/
+}
 
+/* Pseudoklassen werden über einen Doppelpunkt ergänzt und erlauben die Formulierung von Selektoren für bestimmte Zustände (z.B. Maus über dem Element, Link wurde schon besucht, n-th Zeile / Zelle */
 a:hover {
     background-color: black;
 }
 
+/* Wildcard-Selektor * erlaubt das selektieren verschiedener Tags */
 *#copy {
     font-style: italic;
 }
 
+/* Klassen-Kontext: eine Klasse muss zusammen mit einer anderen existieren */
 .xyz.abc {
     color: greenyellow;
 }
