@@ -17,3 +17,41 @@ p {
 h1.beliebig#abc {
     color: orange;
 }
+
+input[type="submit"] {
+    background-color: purple;
+}
+.example[method="get"] input[type="submit"] {
+
+}
+[id="copy"] {
+    background-color: purple;
+}
+
+
+/*ol li a em {*/
+ol > li > a > em {
+    color: orange;
+}
+
+h1 ~ h2 + p {
+    color: cyan;
+}
+
+/* Klappt nicht, da kein Input auf einen Input in einem Element existiert
+form input ~ input {
+    background-color: gold;
+}*/
+
+a:hover {
+    background-color: black;
+}
+
+*#copy {
+    font-style: italic;
+}
+
+.xyz.abc {
+    color: greenyellow;
+}
+
