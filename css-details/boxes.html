@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /**
+         * padding, margin, border
+         * box-sizing
+         **/
+        button {
+            /* Padding/Margin/Border wird in Eigenschaften je Seite verwaltet */
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* Es gibt die Möglichkeit die Elemente schnell zu konfigurieren über die Eigenschaft padding */
+            padding: 50px;
+
+
+            /* Border ist ebenso eine Kurzform, steht für alle vier seiten und die jeweiligen Eigenschaften -width, -style und -color */
+            border: 1px solid #fff;
+            /* 12 Bit, 4 je Farbkanal */
+            border: 1px solid #999999;
+            /* 24 Bit, 8 je Farbkanal */
+
+            /* Farben lassen sich als Name (Standards), RGB oder HSL angegeben. Für RGB kann auch die Schreibweise als Hexadezimalzahl genutzt werden.
+            /*border: 1px solid rgb(255, 255, 255);*/
+
+            /*Neben rgb(...) gibt es noch rgba als 32-Bit Farben, der 4. Kanal wird als Alphakanal interpretiert. */
+            /*color:rgba(0,0,0.5);*/
+
+            /* Margins lassen sich auf "auto" stellen, womit unter "display: block"-Eigenschaft der Wert berechnet wird, wenn es eine Breite gibt, wird links oder rechts mit einem konstanten Wert belegt, kann damit Rechts- oder Linksausrichtung auf Blockebene realisiert werden */
+            margin: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100px;
+            height: 50px;
+            display: block;
+
+            /* Es gibt die Möglichkeit Elemente zu absolut in einem Koordinatensystem zu positionieren, dafür muss das Element auf "position: absolute" umkonfiguriert werden, anschließend können left, top, right und bottom genutzt werden um die Abstände von den daraus resultierenden Koordinatenursprüngen zu definieren.
+             position: absolute;
+
+             right: 50px;
+             bottom: 50px;
+             */
+
+
+            /*display: inline-block;*/
+            /*display: inline;*/
+        }
+
+        div {
+            text-align: center;
+            /* Wirkt sich nur auf Kinder aus, die dem Textfluss unterliegen, z.B. display inline oder inline-block. */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button>Test1</button><button>Test2</button>
+    </div>
+
+</body>
+
+</html>

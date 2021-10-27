@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Regel-Priorisierung ID + Class (z.B. 110) */
+        .abc#xyz {
+            background-color: orange;
+        }
+        /* Regel-Priorisierung ID (z.B. 100) */
+        #xyz {
+            background-color: cyan;
+        }
+        /* Regel-Priorisierung Class (z.B. 10) */
+        .abc {
+            background-color: red;
+        }
+        /* Regel-Priorisierung Div (z.B. 1) */
+        div {
+            background-color: green;
+            /* background-color: green !important; erlaubt das anwenden der Regel über die Selektoren-Wertung bei der Regelpriorisierung hinaus. */
+        }
+    </style>
+</head>
+<body>
+    <div class="abc" id="xyz">Test</div>
+</body>
+</html>
