@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*document.writeln("Hello, World!");
+        console.log("Hello, Log!");
+        console.error("Hello, Error!");*/
+
+        // Kommt der Konsole am nächsten
+        // in der Praxis ehr unnötig
+        // var someValue = prompt();
+        // console.log(someValue);
+
+        // console.log(typeof someValue);
+        
+        /*someValue = 1234;
+        console.log(typeof someValue);*/
+
+        // if(someValue == 1234) {
+        //     console.log("Stimmt!")
+        // } else {
+        //     console.log("Stimmt nicht!")
+        // }
+
+
+        //var arr = Array();
+        var arr = [];
+        console.log(typeof arr);
+        arr[0] = 1;
+        arr[1] = 2;
+        arr[2] = 42;
+        console.log(arr);
+        console.log(arr.length);
+        
+        arr.push(21);
+        console.log(arr);
+
+        arr.pop();
+        console.log(arr);
+        
+        arr.unshift(12);
+        console.log(arr);
+        
+        arr.shift();
+        console.log(arr);
+
+        arr[3] = {};
+        arr[4] = "Test";
+
+        for(var i = 0; i < arr.length; i ++) {
+            console.log(i, arr[i]);
+        }
+
+        // Iteration über Array-Index
+        for(var el in arr) {
+            console.log(el);
+        }
+        
+        // Iteration über Array-Werte
+        for(var el of arr) {
+            console.log(el);
+        }
+
+
+        function someFunc(a, b) {
+            return a + b;
+        }
+
+        var ergebnis = someFunc(4, 8);
+        console.log(ergebnis);
+        var ergebnis2 = someFunc("A", "B");
+        console.log(ergebnis2);
+        var ergebnis3 = someFunc(7, "8");
+        console.log(ergebnis3);
+
+        var someVar = someFunc;
+        console.log(someVar);
+
+        console.log(someVar(12, 24));
+
+        // Funktionalität übergeben
+
+        function doSomething(func) {
+            var ergebnis = func(12, 24);
+            console.log(ergebnis);
+        }
+
+        function someFunc2(a, b) {
+            return a * b;
+        }
+
+        var someFunc3 = function(a, b) {
+            return a - b;
+        }
+
+        // Lambda-Ausdrücke, gibt es auch in Java
+        var someFunc4 = (a, b) => {
+            return a / b;
+        };
+        var someFunc5 = (a, b) => a / b;
+
+        console.log(someFunc3);
+
+        doSomething(someFunc);
+        doSomething(someFunc2);
+        doSomething(someFunc3);
+        doSomething(someFunc4);
+        doSomething(someFunc5);
+
+        (function(test) {
+            console.log(test);
+        })("Hello, World!");
+    </script>
+</body>
+</html>
