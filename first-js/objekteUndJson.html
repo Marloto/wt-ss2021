@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Java -> mittels new-Schlüsselwort aus Klassen erzeugt
+        var beispiel = Object();
+        var beispiel2 = {};
+        beispiel2.someAttr = 123;
+        var beispiel3 = beispiel2;
+        console.log("Beispiel 2", beispiel2);
+        console.log("Beispiel 3", beispiel3);
+        beispiel3.someAttr = 987;
+        // Was für eine Ausgabe ist zu erwarten?
+        console.log("Beispiel 2", beispiel2);
+        console.log("Beispiel 3", beispiel3);
+
+        beispiel3.someFunc = function() {
+            console.log("abc...");
+        }
+
+        beispiel3.someFunc();
+        beispiel2.someFunc(); // ???
+
+        var beispiel4 = {
+            someAttr: 567,
+            otherFunc: function() {
+                console.log("xyz");
+            }
+        };
+        console.log(beispiel4.someAttr);
+        var vector = {x: 123, y: 456, z: 987};
+
+        var arr = [123, 456, "789"];
+        console.log(arr);
+
+        var arr2 = [{x: 123, y: 456, z: 987}, beispiel2, beispiel3, beispiel4];
+        console.log(arr2);
+        console.log(arr2[0].x);
+
+        var zeichenkette = '[123, 456, "987"]';
+        console.log(zeichenkette);
+        console.log(zeichenkette[0]);
+        var zeichenkette2 = JSON.parse(zeichenkette);
+        console.log(zeichenkette2);
+        console.log(zeichenkette2[0]);
+
+        var zeichenkette3 = JSON.stringify(zeichenkette2);
+        console.log(zeichenkette3);
+        console.log(JSON.stringify(arr2));
+        var zeichenkette4 = JSON.stringify(arr2);
+        var arr3 = JSON.parse(zeichenkette4);
+        console.log(arr3);
+    </script>
+</body>
+</html>

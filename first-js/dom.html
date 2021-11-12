@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <p>Lorem ipsum dolor <span>sit</span> amet consectetur adipisicing elit. Nisi magnam tempora, inventore aut odio, ea saepe aliquid quibusdam quisquam earum neque cum error, ipsam eveniet sapiente est et voluptatibus. Nesciunt.</p>
+    <div class="something">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quae.</div>
+
+    <script>
+        console.dir(document.body);
+        console.dir(document.head);
+
+        console.log(document.body.parentNode);
+        console.log(document.head.children);
+        console.log(document.head.children[0])
+        console.log(document.head.children[0].parentNode)
+
+        console.log(document.head.nextElementSibling);
+        console.log(document.head.previousElementSibling);
+
+        console.log(document.head.children[0].nextElementSibling);
+
+        // Zugriff auf P?
+        console.log(document.body.children[0].nextElementSibling)
+        console.log(document.body.children[1])
+        console.log(document.body.children[2].previousElementSibling)
+
+        console.log(document.body
+            .children[1].children);
+        console.log(document.body
+            .children[1].childNodes);
+        
+        // Span Tag
+        console.log(document.body
+            .children[1].childNodes[0].nextSibling)
+        
+        // Span Tag
+        console.log(document.body
+            .children[1].childNodes[0].nextElementSibling)
+    </script>
+</body>
+</html>
