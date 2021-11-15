@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="abc">Test</h1>
+    <p>Lorem ipsum <b class="xyz">dolor</b> sit amet consectetur adipisicing elit. Temporibus, vel?</p>
+    <p class="xyz abc">Lorem ipsum dolor sit amet.</p>
+
+    <input name="test1">
+    <input name="test2">
+
+    <script>
+        // ID, Tag, Classes
+
+        // document.getElement...
+        var liste = document.body.getElementsByTagName("p");
+        console.log(liste);
+        console.log(liste[0]);
+        console.log(liste[1]);
+
+        // Wie könnte man iterieren?
+        // Wie bekommt man die Anzahl der Elemente bei einem Array? -> length
+
+        console.log(liste.length);
+        for(var i = 0; i < liste.length; i ++) {
+            console.log(liste[i]);
+        }
+
+        console.log("-----")
+
+        for(var el of liste) {
+            console.log(el);
+        }
+
+        console.log("-----")
+
+        // Hier gibt es mehr Elemente als gedacht!
+        for(var index in liste) {
+            console.log(index, liste[index]);
+        }
+
+        var liste2 = liste[0].getElementsByTagName('b');
+        console.log(liste2);
+
+
+        // Classen
+
+        console.log("-----")
+        
+        var liste3 = document.getElementsByClassName("xyz");
+        console.log(liste3);
+        
+        // ID
+        
+        console.log("-----")
+
+        var abcElement = document.getElementById("abc");
+        console.log(abcElement);
+
+        // Name
+        // Attribut "name" in HTML kennengelernt?!
+        // Inputs, Textareas, Selects, usw.
+
+        // Namen können z.B. bei Radios mehrmals vorkommen
+        var inputs = document.getElementsByName("test1");
+        console.log(inputs);
+
+        // QuerySelector
+        // Wie könnten Selektoren zu den obigen Beispielen aussehen?
+        var ergebnisTag = document.querySelectorAll("p");
+        console.log(ergebnisTag);
+        var ergebnisClass = document.querySelectorAll(".xyz");
+        console.log(ergebnisClass);
+        var ergebnisId = document.querySelectorAll("#abc");
+        console.log(ergebnisId);
+
+        // Attribut-Selektoren
+        var ergebnisName = document.querySelectorAll("[name='test1']");
+        console.log(ergebnisName);
+
+
+        var ergebnisAlles = document.querySelector("p > b.xyz");
+        console.log(ergebnisAlles);
+        
+        // Manipulation
+        console.log("-----")
+
+        var newDiv = document.createElement("div");
+        var target = document.querySelector("p.xyz");
+        //target.appendChild(newDiv);
+        //document.body.appendChild(newDiv);
+        document.body.insertBefore(newDiv, target);
+
+        console.log(newDiv);
+
+        // new Element: newDiv
+        // Übung: Wie kommt man an das Elternteil?
+        newDiv.parentElement.removeChild(newDiv);
+    </script>
+</body>
+</html>

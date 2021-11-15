@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .something {
+            background-color: cyan;
+        }
+        .example {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test</h1>
+    <p data-irgendwas="1234" style="color: blue">Lorem, ipsum dolor <b>sit</b> amet consectetur adipisicing elit. Blanditiis, fuga.</p>
+    <script>
+        var liste = document.getElementsByTagName("p");
+        var element = liste[0];
+        // Wiederholung alle x Millisekunden
+        window.setInterval(function() {
+            element.style.color = "rgb(" +
+            Math.floor(Math.random() * 255) + "," +
+            Math.floor(Math.random() * 255) + "," +
+            Math.floor(Math.random() * 255)
+             +")";
+            element.style.border = "1px solid darkgray";
+            //element.className = "something example";
+            element.classList.add("something");
+            element.classList.add("example");
+            element.classList.remove("something");
+            if(element.classList.contains("example")) {
+                console.log("ist da!")
+            }
+        }, 1000);
+
+        // Wie konnte man mit JS einen Klick auf einem button verarbeiten?
+        // -> on(click,focus,blur,mouseenter,mouseleave)
+
+        // Beispiel <p onclick="alert('Hello, World');">...
+        element.addEventListener('click', function() {
+            alert('Hello, World');
+        });
+        element.addEventListener('click', function() {
+            alert('Hello, Universe');
+        });
+        // lässt sich wieder entfernen: element.removeEventListener
+
+        // Folgende Alternative steht ebenso zur Verfügung, erlaubt aber nur die Zuweisung einer Behandlungslogik, daher besser addEventListener verwenden, man weiß ja nie wer noch etwas ergänzt hat ;-)
+        // element.onclick = function() {
+        //     alert('Hello, World');
+        // };
+        // element.onclick = function() {
+        //     alert('Hello, Universe');
+        // };
+
+        // ------
+
+        // Sie können auf alle Attribute zugreifen! Diese sind aber nicht immer über .xyz verfügbar - nur einige vordefinierte Attribute lassen sich so finden! z.B. element.id, element.name, element.value, manchmal auch etwas anders in der Bezeichnung, z.B. beim HTML-Attribut class:
+        // element.className, .class ginge nicht wegen Schlüsselwort!
+
+        console.log(element.getAttribute("data-irgendwas"))
+        element.setAttribute("data-irgendwas", "9876");
+
+        // ----
+
+        var text = element.innerText
+        var html = element.innerHTML
+
+        console.log(text);
+        console.log(html);
+
+        element.innerHTML = "<i>Auf Wiedersehen!</i>"
+    </script>
+</body>
+</html>
