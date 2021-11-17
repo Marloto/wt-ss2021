@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+ 
+        .container {
+            width: 900px;
+            margin: 0 auto;
+        }
+ 
+        .centered {
+            text-align: center;
+        }
+ 
+        button,
+        input {
+            padding: 0.5rem 2rem;
+            margin: 1rem;
+            font-size: 1rem;
+            border: 1px solid #bbb;
+            border-radius: 0.25rem;
+        }
+ 
+        input {
+            text-align: right;
+            border-right: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            padding-right: 0px;
+            margin-right: 0px;
+        }
+ 
+        .unit {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border: 1px solid #bbb;
+            border-left: 0px;
+            padding: 0.5rem 2rem 0.5rem 0;
+            color: gray;
+ 
+            margin-right: 1rem;
+        }
+ 
+        input::after {
+            content: "h";
+        }
+ 
+        button {
+            background-color: #eee;
+        }
+ 
+        button:hover {
+            border: 1px solid #999;
+            background-color: #aaa;
+            cursor: pointer;
+        }
+ 
+        .timer {
+            font-size: 10rem;
+            letter-spacing: 1rem;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="container centered">
+        <h1>Timer</h1>
+        <input id="minuten" type="number" value="0"><span class="unit">min</span>
+        <span>:</span>
+        <input id="sekunden" type="number" value="0"><span class="unit">sek</span>
+        <button>Start</button>
+        <hr>
+        <div class="timer">00:00</div>
+    </div>
+    <script>
+        /*
+         Aufgabe: Realisieren Sie den Timer so, dass bei Eingabe eines 
+         Wertes größer 0 in minuten oder sekunden und Drücken von Start 
+         ein Count-Down läuft. Während dieser Läuft soll der Start-Button 
+         als Stop-Button fungieren. 
+         Hinweise:
+         (1) window.setInterval(function() { ... }, 1000) kann genutzt 
+         werden, um jede Sekunde eine Funktion auszuführen
+         (2) Die Rückgabe von setInterval kann verwendet werden, um 
+         diesen später zu Stoppen, z.B.: 
+             var runningTimer = window.setInterval(...); 
+             window.clearInterval(runningTimer);
+         (3) Mit parseFloat(variable); kann eine Zeichenkette in eine 
+         Zahl umgewandelt werden, Hilfreich beim Auslesen von 
+         Formularfeldern.
+         */
+        var time = 0;
+        var runningTimer;
+        function timer() {
+            if(time > 0) {
+              // Aktualisieren Sie die Ansicht
+                var minuten = Math.floor(time / 60);
+                var sekunden = time - minuten * 60;
+                if(minuten < 9) {
+                    minuten = "0" + minuten;
+                }
+                if(sekunden < 9) {
+                    sekunden = "0" + sekunden;
+                }
+                document.querySelector('.timer').innerText = minuten + ":" + sekunden;
+                time --;
+            } else {
+                stopTimer();
+            }
+        }
+        function startTimer() {
+          // Lesen Sie die Formularfelder-Werte, setzen Sie time und
+          // starten Sie das Intervall
+            let minuten = document.getElementById("minuten").value;
+            let sekunden = document.getElementById("sekunden").value;
+            time = parseFloat(minuten) * 60 + parseFloat(sekunden);
+            document.querySelector('button').innerText = "Stop";
+            runningTimer = window.setInterval(timer, 1000);
+            timer();
+        }
+        function stopTimer() {
+          // Setzen Sie alles zurück und stoppen Sie das Intervall
+ 
+            document.querySelector('.timer').innerText = "00:00";
+            document.querySelector('button').innerText = "Start";
+            window.clearInterval(runningTimer);
+            runningTimer = undefined;
+        }
+        function onClickButton() {
+            if(runningTimer) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        }
+ 
+        // Nutzen Sie addEventListener auf dem button
+        document.querySelector('button').addEventListener("click", onClickButton);
+    </script>
+</body>
+ 
+</html>

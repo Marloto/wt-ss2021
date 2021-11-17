@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+ 
+        .container {
+            width: 900px;
+            margin: 0 auto;
+        }
+ 
+        .centered {
+            text-align: center;
+        }
+ 
+        button {
+            padding: 0.5rem 2rem;
+            margin: 1rem;
+            font-size: 1rem;
+            border: 1px solid #bbb;
+            background-color: #eee;
+            border-radius: 0.25rem;
+        }
+ 
+        button:hover {
+            border: 1px solid #999;
+            background-color: #aaa;
+            cursor: pointer;
+        }
+ 
+        button.active {
+            border: 1px solid #229;
+            background-color: #55f;
+            color: white;
+        }
+ 
+        button.active:hover {
+            border: 1px solid #007;
+            background-color: #229;
+        }
+ 
+        .fancy .container p, .fancy .container h1 {
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .big {
+            font-size: 2em;
+        }
+        .small {
+            font-size: 1em;
+        }
+    </style>
+</head>
+ 
+<body class="small">
+    <div class="container centered">
+        <button class="active">Small</button><button>Big</button><button>Fancy</button>
+    </div>
+    <div class="container">
+        <h1>Hinter den Wortbergen</h1>
+ 
+        <p>Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte.
+            Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines
+            Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein
+            paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen. Nicht einmal von der
+            allmächtigen Interpunktion werden die Blindtexte beherrscht – ein geradezu unorthographisches Leben.</p>
+    </div>
+ 
+    <script>
+        /*
+         Aufgabe: Setzen Sie drei mögliche Darstellungsformen des Textes 
+         über die Buttons Small, Big und Fancy um. Es kann immer nur ein 
+         Zustand aktiv sein. Erweitern Sie ggf. das Dokument so, dass Sie 
+         die Buttons mit der DOM-API abrufen können.
+         */
+        var buttons = document.getElementsByTagName("button");
+        var smallButton = buttons[0];
+        var bigButton = buttons[1];
+        var fancyButton = buttons[2];
+ 
+        function handleReset() {
+            // Alles zurücksetzen auf default
+            document.body.classList.remove("small");
+            document.body.classList.remove("big");
+            document.body.classList.remove("fancy");
+ 
+            // Klasse active von allen Buttons entfernen
+            var buttons = document.getElementsByTagName("button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+        }
+        function handleSmall() {
+            handleReset();
+ 
+            // Ändern Sie in kleinen Text
+            document.body.classList.add("small");
+            smallButton.classList.add("active");
+        }
+        function handleBig() {
+            handleReset();
+            
+            // Ändern Sie in großen Text
+            document.body.classList.add("big");
+            bigButton.classList.add("active");
+        }
+        function handleFancy() {
+            handleReset();
+            
+            // Nutzen Sie die CSS Klasse rainbow-text (oder irgendwas anderes)
+            document.body.classList.add("fancy");
+            fancyButton.classList.add("active");
+        }
+ 
+ 
+        // Fügen Sie mittels addEventListener die korrekten Click-Ereignisse hinzu
+        var buttons = document.getElementsByTagName("button");
+        smallButton.addEventListener("click", () => {
+            handleSmall();
+        });
+        bigButton.addEventListener("click", () => {
+            handleBig();
+        });
+        fancyButton.addEventListener("click", () => {
+            handleFancy();
+        });
+    </script>
+</body>
+ 
+</html>

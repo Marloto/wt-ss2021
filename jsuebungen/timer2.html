@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+ 
+        .container {
+            width: 900px;
+            margin: 0 auto;
+        }
+ 
+        .centered {
+            text-align: center;
+        }
+ 
+        button,
+        input {
+            padding: 0.5rem 2rem;
+            margin: 1rem;
+            font-size: 1rem;
+            border: 1px solid #bbb;
+            border-radius: 0.25rem;
+        }
+ 
+        input {
+            text-align: right;
+            border-right: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            padding-right: 0px;
+            margin-right: 0px;
+        }
+ 
+        .unit {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border: 1px solid #bbb;
+            border-left: 0px;
+            padding: 0.5rem 2rem 0.5rem 0;
+            color: gray;
+ 
+            margin-right: 1rem;
+        }
+ 
+        input::after {
+            content: "h";
+        }
+ 
+        button {
+            background-color: #eee;
+        }
+ 
+        button:hover {
+            border: 1px solid #999;
+            background-color: #aaa;
+            cursor: pointer;
+        }
+ 
+        .timer {
+            font-size: 10rem;
+            letter-spacing: 1rem;
+        }
+ 
+        .blinktext {
+            -webkit-animation: blink-text 800ms linear infinite;
+            -moz-animation: blink-text 800ms linear infinite;
+            -ms-animation: blink-text 800ms linear infinite;
+            -o-animation: blink-text 800ms linear infinite;
+            animation: blink-text 1000ms linear infinite;
+        }
+ 
+        @keyframes blink-text {
+            0% {
+                color: red;
+                opacity: 1;
+                transform: rotate(0deg)
+            }
+ 
+            20% {
+                color: red;
+                opacity: .8;
+            }
+ 
+            30% {
+                color: red;
+                opacity: .6;
+            }
+ 
+            40% {
+                color: red;
+                opacity: .4;
+            }
+ 
+            50% {
+                color: red;
+                transform: rotate(180deg);
+                opacity: .2;
+            }
+ 
+            60% {
+                color: red;
+                opacity: 0;
+            }
+ 
+            70% {
+                color: red;
+                opacity: .2;
+            }
+ 
+            80% {
+                color: red;
+                opacity: .4;
+            }
+ 
+            90% {
+                color: red;
+                opacity: .6;
+            }
+ 
+            98% {
+                color: red;
+                opacity: .8;
+            }
+ 
+            100% {
+                color: red;
+                transform: rotate(360deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="container centered">
+        <h1>Timer</h1>
+        <input id="minuten" type="number" value="0"><span class="unit">min</span>
+        <span>:</span>
+        <input id="sekunden" type="number" value="0"><span class="unit">sek</span>
+        <button id="startstop">Start</button>
+        <hr>
+        <div class="timer">00:00</div>
+    </div>
+    <script>
+        /*
+         Aufgabe: Realisieren Sie den Timer so, dass bei Eingabe eines 
+         Wertes größer 0 in minuten oder sekunden und Drücken von Start 
+         ein Count-Down läuft. Während dieser Läuft soll der Start-Button 
+         als Stop-Button fungieren. 
+         Hinweise:
+         (1) window.setInterval(function() { ... }, 1000) kann genutzt 
+         werden, um jede Sekunde eine Funktion auszuführen
+         (2) Die Rückgabe von setInterval kann verwendet werden, um 
+         diesen später zu Stoppen, z.B.: 
+             var runningTimer = window.setInterval(...); 
+             window.clearInterval(runningTimer);
+         (3) Mit parseFloat(variable); kann eine Zeichenkette in eine 
+         Zahl umgewandelt werden, Hilfreich beim Auslesen von 
+         Formularfeldern.
+         */
+        var time = 0;
+        var runningTimer;
+        function timer() {
+            if (time > 0) {
+                time -= 1
+                // Aktualisieren Sie die Ansicht
+                m = Math.floor(time / 60)
+                s = time % 60
+                document.getElementsByClassName("timer")[0].innerHTML = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+            } else {
+                document.getElementsByClassName("timer")[0].classList.add('blinktext')
+                stopTimer();
+            }
+        }
+        function startTimer() {
+            // Lesen Sie die Formularfelder-Werte, setzen Sie time und
+            // starten Sie das Intervall
+            document.getElementsByClassName("timer")[0].classList.remove('blinktext')
+            document.getElementById("startstop").innerHTML = 'Stop'
+            time = parseFloat(document.getElementById("minuten").value) * 60 + parseFloat(document.getElementById("sekunden").value)
+ 
+            runningTimer = window.setInterval(function () {
+                timer()
+            }, 1000);
+ 
+        }
+        function stopTimer() {
+            // Setzen Sie alles zurück und stoppen Sie das Intervall
+            window.clearInterval(runningTimer);
+            time = 0
+            runningTimer = false
+            document.getElementsByClassName("timer")[0].innerHTML = '00:00'
+            document.getElementById("startstop").innerHTML = 'Start'
+ 
+ 
+        }
+        function onClickButton() {
+            if (runningTimer) {
+                stopTimer();
+            } else {
+                startTimer();
+            }
+        }
+        // Nutzen Sie addEventListener auf dem button
+        document.getElementById("startstop").addEventListener("click", onClickButton);
+    </script>
+</body>
+</html>

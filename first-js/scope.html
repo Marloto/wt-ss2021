@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function doSomething() {
+            // wie auch immer... rechnet
+            //var arr = ["WertA", 123, {"irgendwas": 987}]
+            return ["WertA", 123, {"irgendwas": 987}];
+        }
+
+        var ergebnis = doSomething();
+        console.log(ergebnis);
+
+        var [ergA, ergB, ergC] = doSomething();
+        console.log(ergA);
+        console.log(ergB);
+        console.log(ergC);
+
+        var xyz = "Weiteres Hello!";
+        function doOtherthing() {
+            console.log(xyz);
+            if(true) {
+                const irgendeineKonstante = "Anderes Hello!";
+                var abc = "Hello, Universe!";
+                let weitereVar = "Hello, World!";
+                // hier gültig!
+                if(true) {
+                    console.log(weitereVar);
+                    console.log(irgendeineKonstante);
+                }
+            }
+            // Gültigkeit von einer Variable mit "var" erzeugt endet nicht an Kontrollflüssen, aber an Funktionsblöcken!
+            console.log(abc);
+
+            // console.log(weitereVar); <- ERROR
+            console.log(irgendeineKonstante)
+        }
+        doOtherthing();
+        // console.log(abc); <- ERROR!
+    </script>
+</body>
+</html>
