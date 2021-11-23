@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // Wie konnten wir an Objekten die mit {}
+        // entstanden sind Funktionen hinzufügen?
+
+        // Klassische Funktion
+        function someName(p1, p2) {
+
+        }
+
+        // Anonyme Funktion
+        let someName2 = function() {
+
+        }
+
+        let someName3 = someName2;
+
+        // Lambda-Ausdruck
+        var someName4 = (p1, p2) => {
+
+        }
+
+
+        var oldObj = {"key": "value"};
+        // oldObj -> wie kann man ein Attribut
+        //   mit einem Wert belegen?
+        oldObj.otherKey = "otherValue";
+        oldObj.something = function() {};
+
+        oldObj.something();
+
+        console.log(oldObj);
+
+        // Wie könnte man, mit dem was hier
+        // sieht, einer Instanz neue
+        // Methoden ergänzen?
+        // Hinweis: Funktionen sind Datentypen
+
+        function SomeFunction(param1, param2) {
+            this.param1 = param1;
+            this.param2 = param2;
+            this.param3 = function() {
+                return this.param1 + this.param2;
+            }
+        }
+
+        var someObject = new SomeFunction(6, 12);
+        console.log(someObject);
+        console.log(someObject.param3())
+
+        var someObject2 = new SomeFunction(6, 4);
+        console.log(someObject2.param3());
+
+        console.log(someObject.param3 == someObject2.param3)
+        
+        // Prototyping
+        SomeFunction.prototype.param4 = function() {
+            return this.param1 - this.param2;
+        }
+        
+        // Alle Objekte die über new SomeFunction
+        // entstehen, haben absofort die Methode param4!
+        console.log(someObject.param4());
+        console.log(someObject.param4 == someObject2.param4)
+
+        // Passiert nichts sinnvolles, ist aber
+        // eine normale Funktion :)
+        console.log(SomeFunction("abc", 123))
+
+        // Create some Person
+        class Person {
+            constructor(name, alter) {
+                this._name = name; 
+                this._alter = alter; 
+            }
+            get name() { return this._name; }
+            set alter(wert) { this._alter = wert; }
+            toString() {
+                return "name = " + this._name + ", alter = " + this._alter;
+            }
+        }
+
+        class Studierender extends Person {
+
+        }
+
+        var someObject3 = new Person("Ich", 42);
+        console.log(someObject3)
+        console.log(Person.prototype);
+        
+
+
+        // JavaScript time passes...
+
+        Studierender.prototype.additionalFunction = function() {
+
+        }
+
+        class OtherError extends Error {
+
+        }
+
+        // Fängt Fehler
+        try {
+
+            // anweisung1
+            // anweisung2
+            throw new OtherError();
+            // ----
+            // anweisung3
+
+        } catch(e) {
+            console.error(e);
+        }
+    </script>
+</body>
+</html>
