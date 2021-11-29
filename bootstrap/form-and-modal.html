@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <!--
+                Aufgabe: Erstellen Sie ein Bestellformular, mit z.B.:
+                - Selectbox mit Auswahl des Produktes
+                - Eingabe für die Anzahl
+                - Lieferadresse (z.B. Name, Straße, Postleitzahl, Stadt)
+                ca. 15 min
+            -->
+
+
+
+
+
+            <h1>Simple Shop</h1>
+            <hr>
+            <h2>Bestellung</h2>
+            <div class="mb-3 row">
+                <!-- Frage: wie könnte man steuern, dass is-invalid oder is-valid am Formularfeld ergänzt wird...
+                 - Inhalt vom Feld einlesen, vergleichen
+                 - event listener (click / submit / change)
+                 - select-box getElementById oder querySelector
+                 - Blick auf values, gibt es hier ein Muster
+                 - ClassList am Eingabefeld modifizieren!
+                 ca. 10 Minuten
+                 -->
+                <label for="selectProduct" class="col-sm-2 col-form-label">Produkt</label>
+                <div class="col-sm-10">
+                    <select id="selectProduct" class="form-select" aria-label="Default select example">
+                        <option selected>Select Product</option>
+                        <option value="1">Käse</option>
+                        <option value="2">Milch</option>
+                        <option value="3">Orangen</option>
+                        <option value="4">Mülltüten</option>
+                    </select>
+                    <div class="valid-feedback">Produkt verfügbar</div>
+                    <div class="invalid-feedback">Bitte ein Produkt auswählen!</div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputCount" class="col-sm-2 col-form-label">Anzahl</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputCount" min="1" max="10">
+                    <div class="valid-feedback">Anzahl verfügbar</div>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <hr>
+            <h2>Lieferanschrift</h2>
+            <div class="mb-3 row">
+                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputName">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputStreet" class="col-sm-2 col-form-label">Straße</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="inputStreet">
+                </div>
+                <label for="inputNumber" class="col-sm-2 col-form-label">Nr.</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" id="inputNumber">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputStreet" class="col-sm-2 col-form-label">PLZ</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputStreet">
+                </div>
+                <label for="inputNumber" class="col-sm-2 col-form-label">Stadt</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputNumber">
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">Abbrechen</button>
+                    <button type="button" class="btn btn-secondary">Zurücksetzen</button>
+                    <button type="button" class="btn btn-primary" id="sendForm">Absenden</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- CDN ist ein Content Delivery Network -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script>
+        let productBox = document.getElementById("selectProduct");
+        productBox.addEventListener('change', function () {
+            productBox.classList.remove('is-valid', 'is-invalid');
+            let v = parseFloat(productBox.value);
+            if (v >= 1 && v <= 4) {
+                productBox.classList.add('is-valid');
+            } else {
+                productBox.classList.add('is-invalid');
+            }
+        });
+
+
+
+
+
+
+        let countField = document.getElementById("inputCount");
+        countField.addEventListener('change', function () {
+            countField.classList.remove('is-valid', 'is-invalid');
+            let v = parseFloat(countField.value);
+            if (v < 0) {
+                v = 0;
+                countField.value = v;
+            }
+            if (v > 0 && v < 10) {
+                countField.classList.add('is-valid');
+            } else {
+                countField.classList.add('is-invalid');
+                let invalid = countField.parentNode.querySelector('.invalid-feedback');
+                if (v >= 10) {
+                    invalid.innerText = "So viele haben wir nicht";
+                } else {
+                    invalid.innerText = "Bitte eine Zahl größer gleich 1";
+                }
+            }
+        })
+
+
+        // click event
+        // input felder aulesen
+        // mittels dom entsprechende inhalte modifizieren
+
+        let modal = document.getElementById('exampleModal');
+        var myModal = new bootstrap.Modal(modal, {});
+
+
+        let button = document.getElementById('sendForm');
+        let inputName = document.getElementById('inputName');
+        let modalTitle = document.getElementById('exampleModalLabel');
+        button.addEventListener('click', function() {
+            let currentValue = inputName.value;
+            modalTitle.innerText = "Hallo " + currentValue;
+            myModal.show(); //hide, usw.
+        })
+    </script>
+</body>
+
+</html>
