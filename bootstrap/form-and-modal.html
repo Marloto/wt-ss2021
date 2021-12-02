@@ -13,30 +13,10 @@
 <body>
     <div class="container">
         <form>
-            <!--
-                Aufgabe: Erstellen Sie ein Bestellformular, mit z.B.:
-                - Selectbox mit Auswahl des Produktes
-                - Eingabe für die Anzahl
-                - Lieferadresse (z.B. Name, Straße, Postleitzahl, Stadt)
-                ca. 15 min
-            -->
-
-
-
-
-
             <h1>Simple Shop</h1>
             <hr>
             <h2>Bestellung</h2>
             <div class="mb-3 row">
-                <!-- Frage: wie könnte man steuern, dass is-invalid oder is-valid am Formularfeld ergänzt wird...
-                 - Inhalt vom Feld einlesen, vergleichen
-                 - event listener (click / submit / change)
-                 - select-box getElementById oder querySelector
-                 - Blick auf values, gibt es hier ein Muster
-                 - ClassList am Eingabefeld modifizieren!
-                 ca. 10 Minuten
-                 -->
                 <label for="selectProduct" class="col-sm-2 col-form-label">Produkt</label>
                 <div class="col-sm-10">
                     <select id="selectProduct" class="form-select" aria-label="Default select example">
@@ -77,13 +57,13 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="inputStreet" class="col-sm-2 col-form-label">PLZ</label>
+                <label for="inputZip" class="col-sm-2 col-form-label">PLZ</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputStreet">
+                    <input type="text" class="form-control" id="inputZip">
                 </div>
-                <label for="inputNumber" class="col-sm-2 col-form-label">Stadt</label>
+                <label for="inputCity" class="col-sm-2 col-form-label">Stadt</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="inputNumber">
+                    <input type="text" class="form-control" id="inputCity">
                 </div>
             </div>
             <hr>
@@ -91,7 +71,7 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-secondary">Abbrechen</button>
                     <button type="button" class="btn btn-secondary">Zurücksetzen</button>
-                    <button type="button" class="btn btn-primary" id="sendForm">Absenden</button>
+                    <button type="button" class="btn btn-primary disabled" id="sendForm">Absenden</button>
                 </div>
             </div>
         </form>
@@ -109,8 +89,8 @@
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                    <button id="buttonFinalSubmit" type="button" class="btn btn-primary">Bestellung durchführen</button>
                 </div>
             </div>
         </div>
@@ -126,13 +106,17 @@
         crossorigin="anonymous"></script>
     <script>
         let productBox = document.getElementById("selectProduct");
+        let button = document.getElementById('sendForm');
         productBox.addEventListener('change', function () {
             productBox.classList.remove('is-valid', 'is-invalid');
+            button.classList.remove('disabled');
             let v = parseFloat(productBox.value);
             if (v >= 1 && v <= 4) {
                 productBox.classList.add('is-valid');
+
             } else {
                 productBox.classList.add('is-invalid');
+                button.classList.add('disabled');
             }
         });
 
@@ -171,13 +155,61 @@
         var myModal = new bootstrap.Modal(modal, {});
 
 
-        let button = document.getElementById('sendForm');
         let inputName = document.getElementById('inputName');
+        let selectProduct = document.getElementById('selectProduct');
+        let inputCount = document.getElementById('inputCount');
         let modalTitle = document.getElementById('exampleModalLabel');
         button.addEventListener('click', function() {
+            if(!selectProduct.classList.contains('is-valid')) {
+                return;
+            }
+
+
             let currentValue = inputName.value;
             modalTitle.innerText = "Hallo " + currentValue;
             myModal.show(); //hide, usw.
+
+            let count = inputCount.value;
+            let currentSelection = selectProduct[selectProduct.selectedIndex].innerText;
+
+            let product = document.createElement('p');
+            product.innerText = `${count}x ${currentSelection}`;
+
+            let modalBody = modal.querySelector('.modal-body');
+            modalBody.innerText = "";
+            modalBody.appendChild(product)
+
+
+
+            // Füllen Sie den Body vom Modal mit ein paar
+            // Informationen aus dem Formular, damit
+            // der Nutzer diese vor der Bestellung
+            // noch einmal prüfen kann
+            // -> ul/li Elemente erzeugen, informationen auslesen mit .value und
+            //    irgend einen Zugriff
+            // -> Beziehen des Ziel-Elements, in unserem Fall .modal-body
+            // -> appendChild für die Elemente
+        })
+
+
+        // Wie kann durch den Bestellung absenden knopf das ganze nun versendet
+        // werden?
+
+        let buttonFinalSubmit = document.getElementById('buttonFinalSubmit')
+        buttonFinalSubmit.addEventListener('click', function() {
+            myModal.hide(); // hier nicht zwingend notwendig!
+
+            //let form = document.querySelector('form');
+            //form.submit(); // erzeugt automatisch eine url mit Query-Part der Input-Felder
+
+            // Auswahl an Daten über neue Formulare + Input mit Type=hidden
+
+            // Alternativ: manuelles weiterleiten
+            //   (get nur mit "GET", für "POST" ausschließlich Formulare!)
+            // window.open?
+            // document.location.href?
+            let currentValue = inputName.value;
+            document.location.href = "zielseite.html?para1=" + currentValue;
         })
     </script>
 </body>
