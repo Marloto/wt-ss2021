@@ -1,0 +1,25 @@
+.snowflake {
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: -5vh;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translate3d(var(--left-ini), 0, 0);
+    }
+    100% {
+        transform: translate3d(var(--left-end), 110vh, 0);
+    }
+}
+
+.snowflake {
+    left: var(--left);
+    animation: snowfall var(--duration) linear infinite;
+    animation-delay: var(--delay);
+}
+
+.before .snowflake {
+    filter: blur(1px);
+}

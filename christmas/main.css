@@ -1,0 +1,150 @@
+html,
+body {
+    margin: 0px;
+    background: lightblue;
+}
+
+.tree {
+    position: absolute;
+    left: 50%;
+    bottom: calc(10% + 60vh);
+}
+
+.tree > * {
+    position: absolute;
+}
+
+.tree-dark-img,
+.tree-light-img,
+.trunk-img,
+.sphere-img,
+.star-img,
+.candy-img {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.tree-dark-img,
+.tree-light-img {
+    width: 20vh;
+    height: 15vh;
+    
+}
+
+.tree-dark-img {
+    background-image: url("images/treepart2.svg");
+}
+.tree-light-img {
+    background-image: url("images/treepart1.svg");
+}
+.trunk-img {
+    background-image: url("images/trunk.svg");
+    width: 11vh;
+    height: 12vh;
+    
+}
+
+.shadow-img {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+}
+
+.star-img {
+    background-image: url("images/star.svg");
+    width: 8vh;
+    height: 8vh;
+}
+.candy-img {
+    background-image: url("images/candy.svg");
+    height: 8.8vh;
+    width: 4.2vh;
+    position: absolute;
+    top: -4.4vh;
+    left: -2.1vh;
+}
+.sphere-img {
+    background-image: url("images/sphere.svg");
+    width: 4.0vh;
+    height: 4.0vh;
+    position: absolute;
+    top: -2.0vh;
+    left: -2.0vh;
+}
+
+.mountain {
+    position: absolute;
+    left: 0vh;
+    right: 0vh;
+    height: 33%;
+    bottom: 0vh;
+    background-color: white;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+[class*="tree-part-"] {
+    position: absolute;
+}
+
+[class*="tree-part-p"] {
+    position: absolute;
+}
+.tree-part-p1 {
+    top: 0vh;
+}
+.tree-part-p2 {
+    top: 6vh;
+}
+.tree-part-p3 {
+    top: 12vh;
+}
+.tree-part-p4 {
+    top: 18vh;
+}
+.tree-part-p5 {
+    top: 28vh;
+}
+
+.sphere-p1 {
+    top: 30vh;
+    left: -7.5vh;
+}
+.sphere-p2 {
+    top: 20vh;
+    left: 5vh;
+}
+.sphere-p3 {
+    top: 10vh;
+    left: 1vh;
+}
+.sphere-p4 {
+    top: 35vh;
+    left: 1vh;
+}
+.sphere-p5 {
+    top: 24vh;
+    left: -9vh;
+}
+
+.candy-p1 {
+    top: 30vh;
+    left: 7.5vh;
+}
+.candy-p2 {
+    top: 12vh;
+    left: -3vh;
+}
+.star {
+    top: -6vh;
+}
+
+.trunk {
+    top: 40vh;
+}
+
+.shadow {
+    top: 45vh;
+}
