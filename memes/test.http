@@ -1,0 +1,31 @@
+GET http://localhost/memes/meme HTTP/1.1
+
+###
+
+GET http://localhost/memes/meme/7 HTTP/1.1
+
+###
+
+POST http://localhost/memes/meme HTTP/1.1
+content-type: application/json
+
+{
+    "memeUrl":"images/first-world-prob.jpg",
+    "upperText":"TEST",
+    "lowerText":"TEXT"
+}
+
+###
+
+DELETE http://localhost/memes/meme/6 HTTP/1.1
+
+###
+
+PUT http://localhost/memes/meme/7 HTTP/1.1
+content-type: application/json
+
+{
+    "memeUrl":"images/first-world-prob.jpg",
+    "upperText":"Has to create a REST service in PHP",
+    "lowerText":"must configure .htaccess for nice looking URLs."
+}
