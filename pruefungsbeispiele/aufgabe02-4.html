@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate Lorem Ipsum Text</h1>
+        <p>Geben Sie an, wieviele Wörter der Text haben soll.</p>
+        <div class="form-group row">
+            <label for="name" class="col-3 form-label"> Anzahl der Wörter</label>
+            <div class="col-9"> <input
+                    class="form-control" type="number" id="words"
+                    value="100">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12 text-center"> <button
+                    class="btn btn-primary">
+                    Erzeugen</button> </div>
+        </div>
+    </div>
+    <div class="modal" id="output">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ergebnis Text</h5> <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+    <script>
+        function fix(result) {
+            let c = result.substr(-1);
+            result = result.substr(0, result.length - 1);
+            if (c == ',') {
+                return result.substr(0, result.length - 1) + "."
+            } else if (result.endsWith('.')) {
+                return result;
+            }
+            return result + ".";
+        }
+
+        var textElements = [
+            "Lorem", "ipsum", "dolor", "sit", "amet,", "consetetur", "sadipscing", "elitr,", "sed", "diam", "nonumy", "eirmod", "tempor", "invidunt", "ut", "labore", "et", "dolore", "magna", "aliquyam", "erat,", "sed", "diam", "voluptua."
+        ];
+
+        function generateText(numberOfWords) {
+            let ergebnis = "";
+
+            // aus dem Array Wörter übernehmen und in eine Zeichenkette platzieren
+            // -> über das Array iterieren und eine Stringkonkatination erzeugen mit einem + ?
+
+            // Variante 1
+            while(numberOfWords > 0) {
+                for(let i = 0; i < textElements.length && i < numberOfWords; i ++) {
+                    ergebnis += textElements[i] + " ";
+                    numberOfWords --;
+                }
+            }
+
+            // Variante 2
+            // for(let i = 0; i < numberOfWords; i ++) {
+            //     // 0 % 24 => 0
+            //     // 23 % 24 => 23
+            //     // 24 % 24 => 0
+            //     // 25 % 24 => 1 ...
+            //     ergebnis += textElements[i % textElements.length] + " ";
+
+            // }
+
+            // Variante 3
+            // for(let i = 0; i < textElements.length; i ++) {
+            //     ergebnis += textElements[i] + " ";
+            //     numberOfWords --;
+            //     if(numberOfWords > 0 && textElements.length == i - 1) {
+            //         i = 0;
+            //     }
+            // }
+
+            // Variante 4 --> kommt im nachgang
+            // for(let j = 0; j < numberOfWords; j ++) {
+            //     for(let i = 0; i < textElements.length && i < numberOfWords ; i ++) {
+            //         ergebnis += textElements[i] + " ";
+            //     }
+            // }
+
+            return fix(ergebnis);
+        }
+
+        let button = document.getElementsByTagName("button")[0];
+
+        // Korrektur für Bootstrap5
+        let modalElement = document.getElementById("output");
+        let modalCtrl = new bootstrap.Modal(modalElement, {});
+
+        button.addEventListener("click", function () {
+            let wordsField = document.getElementById("words");
+            let paragraphInModal = document.querySelector("#output p");
+            let text = generateText(wordsField.value); 
+            paragraphInModal.textContent = text; 
+            //$("#output").modal("show");
+            // Modal in Bootstrap 5 mit JavaScript öffnen?
+            modalCtrl.show();
+        });
+    </script>
+</body>
+
+</html>
